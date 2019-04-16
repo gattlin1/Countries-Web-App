@@ -1,0 +1,25 @@
+{
+  "name": "fish-project",
+  "version": "1.0.0",
+  "description": "A web application that contacts the fish watch api and post tweets",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "pug": "^2.0.3",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gattlin1/Fish-Project.git"
+  },
+  "author": "Gattlin Walker, Mitchell Perez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gattlin1/Fish-Project/issues"
+  },
+  "homepage": "https://github.com/gattlin1/Fish-Project#readme"
+}
