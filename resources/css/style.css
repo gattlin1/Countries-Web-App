@@ -1,0 +1,8 @@
+/*We must use 3 different types of selectors and 10 rules */
+
+h1{
+	background-color: lightblue;
+	font-size: 30;
+	font-weight: bolder;
+	text-align: center
+}
