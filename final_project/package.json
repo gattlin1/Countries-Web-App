@@ -2,7 +2,7 @@
   "name": "fish-project",
   "version": "1.0.0",
   "description": "A web application that contacts the fish watch api and post tweets",
-  "main": "server.js",
+  "main": "main.js",
   "dependencies": {
     "express": "^4.16.4",
     "pug": "^2.0.3",
