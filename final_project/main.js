@@ -11,8 +11,8 @@ app.set('view engine', 'pug');
 app.set('views', 'views');
 
 app.get('/', function(req, res) {
-	const region = req.query.region || 'Americas';
-	const sub_region = req.query.sub_region || 'Central America';
+	const region = req.query.region || '';
+	const sub_region = req.query.sub_region || '';
 
 	request({
 		url: `http://countryapi.gear.host/v1/Country/getCountries?pRegion=${region}&pSubRegion=${sub_region}`,
