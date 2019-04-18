@@ -11,25 +11,22 @@ app.set('view engine', 'pug');
 app.set('views', 'views');
 
 app.get('/', function(req, res) {
-	const species = req.query.species || 'bass';
+	const region = req.query.region || 'Americas';
+	const sub_region = req.query.sub_region || 'Central America';
 
 	request({
-		url: `https://www.fishwatch.gov/api/species/${species}`,
+		url: `http://countryapi.gear.host/v1/Country/getCountries?pRegion=${region}&pSubRegion=${sub_region}`,
 		json: true
 	},
 	function(err, response, body) {
-		console.log(err);
+		console.log(err || response.statusCode >= 400);
 		if (err) {
 			res.sendStatus(500);
 			return;
 		}
-		if (response.statusCode >= 400) {
-			res.sendStatus(500);
-			return;
-		}
-		const fish = body;
-		res.render('homepage', fish[0]);
-		console.log(fish[0]);
+		const info = body;
+		res.render('homepage', info);
+		console.log(info);
 	}
 	);
 });

@@ -1,10 +1,12 @@
 extends layout
 block title
-	title Fish Fun Facts
+	title Country Fun Facts
 
 block css
 	link(rel="stylesheet", href="style.css")
 
 block body
-	h1 Species:
-
+	ul
+		for countries in Response
+			li #{countries.Name}
+			img(src=countries.Flag, alt="", srcset="")
