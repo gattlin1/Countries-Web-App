@@ -11,5 +11,7 @@ block body
 		for countries in Response
 			li.countryName #{countries.Name}
 			img(class = 'countryFlag', src=countries.Flag, alt="", srcset="")
-			li.subRegion Geographic Location: #{countries.SubRegion}
-			li.currencyName Currency Name: #{countries.CurrencyName} (#{countries.CurrencyCode})
+			li.Region General Location: #{countries.Region}
+			li.subRegion Specific Location: #{countries.SubRegion}
+			li.currencyName Currency: #{countries.CurrencySymbol} - #{countries.CurrencyName} (#{countries.CurrencyCode})
+			li.countryAbbreviation Abbreviated: #{countries.Alpha3Code}

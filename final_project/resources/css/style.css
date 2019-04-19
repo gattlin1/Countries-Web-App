@@ -31,3 +31,9 @@ h1 {
 .currencyName{
 	text-align: center;
 }
+.Region{
+	text-align: center;
+}
+.countryAbbreviation{
+	font-weight: bolder; 
+}

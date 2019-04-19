@@ -13,9 +13,12 @@ app.set('views', 'views');
 app.get('/', function(req, res) {
 	const region = req.query.region || '';
 	const subregion = req.query.subregion || '';
+	const currencyName = req.query.currencyName || '';
+	const currencyCode = req.query.currencyCode || '';
+	const countryAbbreviation = req.query.Alpha3Code || '';
 
 	request({
-		url: `http://countryapi.gear.host/v1/Country/getCountries?pRegion=${region}&pSubRegion=${subregion}`,
+		url: `http://countryapi.gear.host/v1/Country/getCountries?pRegion=${region}&pSubRegion=${subregion}&pcurrencyName=${currencyName}&pcurrencyCode=${currencyCode}&pAlpha3Code=${countryAbbreviation}`,
 		json: true
 	},
 	function(err, response, body) {
