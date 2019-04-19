@@ -12,19 +12,23 @@ app.set('views', 'views');
 
 app.get('/', function(req, res) {
 	const region = req.query.region || '';
-	const sub_region = req.query.sub_region || '';
+	const subregion = req.query.subregion || '';
 
 	request({
-		url: `http://countryapi.gear.host/v1/Country/getCountries?pRegion=${region}&pSubRegion=${sub_region}`,
+		url: `http://countryapi.gear.host/v1/Country/getCountries?pRegion=${region}&pSubRegion=${subregion}`,
 		json: true
 	},
 	function(err, response, body) {
-		console.log(err || response.statusCode >= 400);
-		if (err) {
+		if (err || response.statusCode >= 400) {
 			res.sendStatus(500);
 			return;
 		}
 		const info = body;
+		console.log(info.TotalCount);
+		if (info.TotalCount === 0) {
+			res.status(404).send('Sorry, you tried to access a region or subregion that does not exist. Please try again');
+			return;
+		}
 		res.render('homepage', info);
 		console.log(info);
 	}
