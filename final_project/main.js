@@ -3,6 +3,7 @@
 const express = require('express');
 const app = express();
 const request = require('request');
+const url = require('./modules/createUrl');
 
 app.use(express.static('resources'));
 
@@ -11,14 +12,15 @@ app.set('view engine', 'pug');
 app.set('views', 'views');
 
 app.get('/', function(req, res) {
-	const region = req.query.region || '';
-	const subregion = req.query.subregion || '';
-	const currencyName = req.query.currencyName || '';
-	const currencyCode = req.query.currencyCode || '';
-	const countryAbbreviation = req.query.Alpha3Code || '';
+	const params = new Map();
+	params.set('pRegion', req.query.region || '');
+	params.set('pSubRegion', req.query.subregion || '');
+	params.set('pCurrencyName', req.query.currencyName || '');
+	params.set('pCurrencyCode', req.query.currencyCode || '');
+	params.set('pAlpha3Code', req.query.Alpha3Code || '');
 
 	request({
-		url: `http://countryapi.gear.host/v1/Country/getCountries?pRegion=${region}&pSubRegion=${subregion}&pcurrencyName=${currencyName}&pcurrencyCode=${currencyCode}&pAlpha3Code=${countryAbbreviation}`,
+		url: url.createUrl(params),
 		json: true
 	},
 	function(err, response, body) {
@@ -27,13 +29,13 @@ app.get('/', function(req, res) {
 			return;
 		}
 		const info = body;
-		console.log(info.TotalCount);
+
 		if (info.TotalCount === 0) {
 			res.status(404).send('Sorry, you tried to access a region or subregion that does not exist. Please try again');
 			return;
 		}
+
 		res.render('homepage', info);
-		console.log(info);
 	}
 	);
 });
