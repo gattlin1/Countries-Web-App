@@ -7,6 +7,8 @@ block css
 
 block body
 	h1 From the United States to Kiribati, Global Fun Facts
+	h2 Study hard and test your knowledge with our quiz!
+	a(class = 'button' href='/quiz') Quiz Link Here
 	ul.countryInfo
 		for countries in Response
 			li.countryName #{countries.Name}

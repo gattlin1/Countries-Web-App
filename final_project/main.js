@@ -12,7 +12,10 @@ app.use(express.static('resources'));
 app.set('view engine', 'pug');
 app.set('views', 'views');
 
-app.get('/', function(req, res) {
+app.get('/', function(req, res){
+	res.render('intro')
+});
+app.get('/homepage', function(req, res) {
 	const params = new Map();
 	params.set('pRegion', req.query.region || '');
 	params.set('pSubRegion', req.query.subregion || '');
@@ -41,6 +44,7 @@ app.get('/', function(req, res) {
 	}
 	);
 });
+
 
 app.get('/quiz', function(req, res) {
 	request({
