@@ -4,7 +4,7 @@ const url = {};
 
 // @params: a map of query parameters to be appended to the api url
 // @return: an api url with all query parameters
-url.createUrl = function(params) {
+url.create = function(params) {
 	let url_value = 'http://countryapi.gear.host/v1/Country/getCountries';
 
 	url_value += createParams(params);
@@ -30,7 +30,6 @@ const createParams = function(params) {
 	else {
 		return '';
 	}
-
 };
 
 module.exports = url;

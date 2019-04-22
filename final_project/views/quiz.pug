@@ -1,0 +1,18 @@
+extends layout
+block title
+	Countries Quiz
+
+block css
+	link(rel="stylesheet", href="/css/style.css")
+
+block body
+	h1 Countries Quiz
+	span.right Number Correct --Fill in later--
+	b How many can you get correct
+	ul
+		for question in info
+			img(class = 'countryFlag', src=question.flag, alt="Flag", srcset="")
+			//- TODO: Figure out a way for these to be trackable
+			for country in question.possAnsw
+				li #{country}
+	button Submit

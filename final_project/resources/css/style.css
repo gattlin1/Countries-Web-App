@@ -5,12 +5,11 @@ h1 {
 	font-weight: bolder;
 	text-align: center
 }
-.countryInfo{
+.countryInfo {
 	list-style: none;
 }
 
-
-.countryFlag{
+.countryFlag {
   display: block;
   max-width:230px;
   max-height:95px;
@@ -21,19 +20,28 @@ h1 {
   margin-bottom: 20px;
   margin-top:20px;
 }
-.countryName{
+
+.countryName {
 	font-weight: bolder;
 	border: groove;
 }
-.subRegion{
-	text-align: center;	
-}
-.currencyName{
+
+.subRegion {
 	text-align: center;
 }
-.Region{
+
+.currencyName {
 	text-align: center;
 }
-.countryAbbreviation{
-	font-weight: bolder; 
+
+.Region {
+	text-align: center;
+}
+
+.countryAbbreviation {
+	font-weight: bolder;
+}
+
+.right {
+	float: right;
 }
