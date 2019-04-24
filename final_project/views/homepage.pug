@@ -1,19 +1,7 @@
 extends layout
 block title
-	title Country Fun Facts
-
-block css
-	link(href="/css/style.css", rel="stylesheet")
+	title Welcome to Country Facts!
 
 block body
-	h1 From the United States to Kiribati, Global Fun Facts
-	h2 Study hard and test your knowledge with our quiz!
-	a(class = 'button' href='/quiz') Quiz Link Here
-	ul.countryInfo
-		for countries in Response
-			li.countryName #{countries.Name}
-			img(class = 'countryFlag', src=countries.Flag, alt="Flag", srcset="")
-			li.Region General Location: #{countries.Region}
-			li.subRegion Specific Location: #{countries.SubRegion}
-			li.currencyName Currency: #{countries.CurrencySymbol} - #{countries.CurrencyName} (#{countries.CurrencyCode})
-			li.countryAbbreviation Abbreviated: #{countries.Alpha3Code}
+	h1.introText From the States to Kiribati, Global Fun Facts
+	h2.introText Study hard and test your knowledge with our quiz!

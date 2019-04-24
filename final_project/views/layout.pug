@@ -2,8 +2,17 @@ doctype html
 html
 	head
 		meta(charset='UTF-8')
+		link(rel="stylesheet", href="/css/style.css")
 		block title
-		block css
-		
+
 	body
+		div.header
+			ul
+				li
+					a(class='button', href='/') Home
+				li
+					a(class='button', href='/funFacts') Fun Fact
+				li
+					a(class='button', href='/quiz') Quiz
+		.clear
 		block body

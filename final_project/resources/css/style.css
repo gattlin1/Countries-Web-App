@@ -1,8 +1,10 @@
+body {
+	background-color: #657786;
+	color: white;
+}
 
 h1 {
-	background-color: lightblue;
-	font-size: 30;
-	font-weight: bolder;
+	font-size: 12;
 	text-align: center
 }
 .countryInfo {
@@ -45,6 +47,7 @@ h1 {
 .right {
 	float: right;
 }
+
 .button {
 	background-color: rgb(148, 147, 147);
 	border: none;
@@ -55,3 +58,42 @@ h1 {
 	display: inline-block;
 	font-size: 16px;
 }
+
+.header ul {
+	list-style-type: none;
+  	margin: 0;
+  	padding: 0;
+  	overflow: hidden;
+	background-color: #1da1F2;
+}
+
+ul {
+	list-style-type: none;
+}
+
+.header li {
+	float: right;
+}
+
+.header a {
+	background-color: #1da1F2;
+	display: block;
+  	color: white;
+  	text-align: center;
+  	padding: 14px 16px;
+  	text-decoration: none;
+}
+
+.clear {
+	clear: right;
+}
+
+.container {
+	width: 500px;
+	clear: both;
+  }
+
+.container input {
+	width: 100%;
+	clear: both;
+  }

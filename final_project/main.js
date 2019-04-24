@@ -13,9 +13,10 @@ app.set('view engine', 'pug');
 app.set('views', 'views');
 
 app.get('/', function(req, res){
-	res.render('intro')
+	res.render('homepage');
 });
-app.get('/homepage', function(req, res) {
+
+app.get('/funFacts', function(req, res) {
 	const params = new Map();
 	params.set('pRegion', req.query.region || '');
 	params.set('pSubRegion', req.query.subregion || '');
@@ -39,8 +40,7 @@ app.get('/homepage', function(req, res) {
 			return;
 		}
 
-		res.render('homepage', info);
-		console.log(info);
+		res.render('funFacts', info);
 	}
 	);
 });

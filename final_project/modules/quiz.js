@@ -4,7 +4,7 @@ const quiz = {};
 
 let count = 0;
 let countryData = {};
-let excludedNums = [];
+let excludedNums = {};
 
 // @param: a request from the country api
 quiz.getCountries = function(countries) {
@@ -40,14 +40,13 @@ const getRandomNums = function() {
 
 	while (randValues.length < 4) {
 		const rand = Math.floor(Math.random() * count);
-		if (!(randValues.includes(rand) && excludedNums.includes(rand))) {
+		if (!(randValues.includes(rand) && excludedNums[rand] === true)) {
 			randValues.push(rand);
 		}
 	}
-	excludedNums.push(randValues[0]);
+	excludedNums[randValues[0]] = true;
 
 	return randValues;
 };
-
 
 module.exports = quiz;
