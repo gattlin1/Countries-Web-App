@@ -3,10 +3,11 @@ block title
 	title Quiz
 
 block body
-	h1 Countries Quiz
+	h1 Good luck on our quiz! No Cheating!
 	span.right Number Correct --Fill in later--
-	b How many can you get correct?
-	ul
+	br
+	h2 Time to put your knowledge to the test!
+	ul.centerFlags
 		- let questionNum = 1;
 		for question in info
 			img(class = 'countryFlag', src=question.flag, alt="Flag", srcset="")
@@ -17,3 +18,4 @@ block body
 				.clear
 			-questionNum++;
 	a(class='button') Submit
+	//- couldn't get button to center. Might need to make another class 
