@@ -1,23 +1,18 @@
 extends layout
 block title
 	title Country Fun Facts
-	script(src="/js/facts")
 
 block body
 	h1 From the United States to Kiribati, Global Fun Facts
 	h2 Study hard and test your knowledge with our quiz!
-	div.container
-		form(action='fill in later')
-			label(for="a") Region #[input(type="text", name="Region")]
-			label(for="b") Subregion #[input(type="text", name="Subregion")]
-			label(for="c") CurrencyName #[input(type="text", name="CurrencyName")]
-			label(for="d") CurrencyCode #[input(type="text", name="CurrencyCode")]
-			label(for="e") Alpha3Code #[input(type="text", name="Alpha3Code")]
-	//-ul.countryInfo
-		for countries in Response
-			li.countryName #{countries.Name}
-			img(class = 'countryFlag', src=countries.Flag, alt="Flag", srcset="")
-			li.Region General Location: #{countries.Region}
-			li.subRegion Specific Location: #{countries.SubRegion}
-			li.currencyName Currency: #{countries.CurrencySymbol} - #{countries.CurrencyName} (#{countries.CurrencyCode})
-			li.countryAbbreviation Abbreviated: #{countries.Alpha3Code}
+	.container
+		form#search
+			label Region #[input#region(type="text")]
+			label Subregion #[input#subregion(type="text")]
+			label CurrencyName #[input#currencyName(type="text")]
+			label CurrencyCode #[input#currencyCode(type="text")]
+			label Alpha3Code #[input#alpha3Code(type="text")]
+			button.button(type="submit") Submit
+	#results
+	
+	script(src="/js/facts.js")

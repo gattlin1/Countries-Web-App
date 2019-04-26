@@ -20,12 +20,16 @@ app.get('/', function(req, res){
 });
 
 app.get('/funFacts', function(req, res) {
+	res.render('funFacts');
+});
+
+app.post('/funFacts', function(req, res) {
 	const params = new Map();
 	params.set('pRegion', req.query.region || '');
 	params.set('pSubRegion', req.query.subregion || '');
 	params.set('pCurrencyName', req.query.currencyName || '');
 	params.set('pCurrencyCode', req.query.currencyCode || '');
-	params.set('pAlpha3Code', req.query.Alpha3Code || '');
+	params.set('pAlpha3Code', req.query.alpha3Code || '');
 
 	request({
 		url: url.create(params),
@@ -42,12 +46,9 @@ app.get('/funFacts', function(req, res) {
 			res.status(404).send('Sorry, you tried to access information that does not exist. Please try again');
 			return;
 		}
-
-		res.render('funFacts', info);
-	}
-	);
+		res.json(info);
+	});
 });
-
 
 app.get('/quiz', function(req, res) {
 	request({
