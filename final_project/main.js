@@ -50,6 +50,7 @@ app.post('/funFacts', function(req, res) {
 	});
 });
 
+const questionKey = [];
 app.get('/quiz', function(req, res) {
 	request({
 		url: 'http://countryapi.gear.host/v1/Country/getCountries',
@@ -57,13 +58,28 @@ app.get('/quiz', function(req, res) {
 	},
 	function(err, response, body) {
 		quiz.getCountries(body);
-		const info = quiz.create();
 
 		// TODO: find a better way to do this to be able to access the informaiton in pug
 		// TODO: add error checks, possibly combine error statements into a callable function
-		const v = {info: info};
-		res.render('quiz', v);
+		const questions = {info: quiz.create()};
+
+		questions.info.forEach(function(question) {
+			questionKey.push(question.answ);
+		});
+		res.render('quiz', questions);
 	});
+
+});
+
+app.post('/quiz', function(req, res) {
+	let numCorrect = 0;
+	console.log(req.body);
+	for(let i = 0; i < questionKey.length; i++) {
+		if(req.body[i] === questionKey[i]) {
+			++numCorrect;
+		}
+	}
+	res.json(numCorrect);
 });
 
 const server = app.listen(3000, function() {

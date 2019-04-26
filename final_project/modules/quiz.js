@@ -1,5 +1,5 @@
 'use strict';
-
+//TODO Need to setup a test to run this several hundred times to make sure there are no duplicates created
 const quiz = {};
 
 let count = 0;
@@ -24,6 +24,8 @@ quiz.create = function() {
 		question.flag = answer.Flag;
 		question.answ = answer.Name;
 
+		randNums.sort(() => Math.random() - 0.5);
+
 		for(let j = 0; j < randNums.length; j++) {
 			question.possAnsw.push(countryData.Response[randNums[j]].Name);
 		}
@@ -40,7 +42,7 @@ const getRandomNums = function() {
 
 	while (randValues.length < 4) {
 		const rand = Math.floor(Math.random() * count);
-		if (!(randValues.includes(rand) && excludedNums[rand] === true)) {
+		if (!randValues.includes(rand) && excludedNums[rand] !== true) {
 			randValues.push(rand);
 		}
 	}

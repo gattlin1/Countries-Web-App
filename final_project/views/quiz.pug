@@ -6,14 +6,16 @@ block body
 	h1 Countries Quiz
 	span.right Number Correct --Fill in later--
 	b How many can you get correct?
-	ul
-		- let questionNum = 1;
-		for question in info
-			img(class = 'countryFlag', src=question.flag, alt="Flag", srcset="")
-			//- TODO: Figure out a way for these to be trackable
-			for country in question.possAnsw
-				input(type="radio", name=questionNum, value=country)
-				| #{country}
-				.clear
-			-questionNum++;
-	a(class='button') Submit
+	#questions
+		form#guesses
+			- let questionNum = 1;
+			for question in info
+				img(class = 'countryFlag', src=question.flag, alt="Flag", srcset="")
+				//- TODO: Figure out a way for these to be trackable
+				for country in question.possAnsw
+					input(type="radio", name=`question${questionNum}`, value=country)
+					| #{country}
+					.clear
+				-questionNum++;
+	button.button(type="submit") Submit
+	script(src="/js/reqResults.js")
