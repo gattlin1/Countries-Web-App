@@ -96,15 +96,17 @@ ul {
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	font-size: 16px;
 }
-.centerFlags{
+
+.centerFlags {
 	text-align: center;
 }
-.centerText{
+
+.centerText {
 	padding-left: 350px;
 }
-.countryFlag{
+
+.countryFlag {
 	display: block;
-	margin-left: auto;
 	margin-right: auto;
 	width: 50%;
 }
