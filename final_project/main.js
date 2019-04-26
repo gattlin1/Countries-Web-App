@@ -5,8 +5,8 @@ const app = express();
 const request = require('request');
 const url = require('./modules/createUrl');
 const quiz = require('./modules/quiz');
-//const twitter = require('./modules/twitter');
-//const util = require('util');
+const twitter = require('./modules/twitter');
+//make sure you use "npm install twit" to install twitter api
 
 
 app.use(express.static('resources'));
@@ -81,7 +81,9 @@ app.post('/quiz', function(req, res) {
 	}
 	res.json(numCorrect);
 });
-
+	 twitter.post('statuses/update', {status: 'hello world!'}, function(err, data, response){
+	 	console.log(data)
+	 })
 const server = app.listen(3000, function() {
 	console.log(`Server is running on port ${server.address().port}`);
 });
