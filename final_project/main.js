@@ -81,9 +81,10 @@ app.post('/quiz', function(req, res) {
 	}
 	res.json(numCorrect);
 });
-	 twitter.post('statuses/update', {status: 'hello world!'}, function(err, data, response){
-	 	console.log(data)
-	 })
+
+twitter.post('statuses/update', {status: 'hello world!'}, function(err, data, response) {
+	console.log(data);
+});
 const server = app.listen(3000, function() {
 	console.log(`Server is running on port ${server.address().port}`);
 });

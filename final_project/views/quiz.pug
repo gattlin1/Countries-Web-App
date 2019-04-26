@@ -5,7 +5,6 @@ block title
 block body
 	h1 Good luck on our quiz! No Cheating!
 	span.right Number Correct --Fill in later--
-<<<<<<< HEAD
 	b How many can you get correct?
 	#questions
 		form#guesses
@@ -20,19 +19,3 @@ block body
 				-questionNum++;
 	button.button(type="submit") Submit
 	script(src="/js/reqResults.js")
-=======
-	br
-	h2 Time to put your knowledge to the test!
-	ul.centerFlags
-		- let questionNum = 1;
-		for question in info
-			img(class = 'countryFlag', src=question.flag, alt="Flag", srcset="")
-			//- TODO: Figure out a way for these to be trackable
-			for country in question.possAnsw
-				input(type="radio", name=questionNum, value=country)
-				| #{country}
-				.clear
-			-questionNum++;
-	a(class='button') Submit
-	//- couldn't get button to center. Might need to make another class 
->>>>>>> 4272df8dcbf78424e6516ecfd254a8e3ae629020
