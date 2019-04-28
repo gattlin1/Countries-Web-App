@@ -5,9 +5,10 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
 
-h1, h2, li {
+h1, h2, li, ul {
 	font-size: 12;
 	text-align: center;
+	list-style-type: none;
 }
 
 
@@ -49,10 +50,6 @@ img {
 	background-color: #1da1F2;
 }
 
-ul {
-	list-style-type: none;
-}
-
 .header a {
 	background-color: #1da1F2;
 	display: block;
@@ -84,7 +81,17 @@ ul {
 	width: 800px;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
-
+.quizImage {
+	resize: both;
+	margin: auto;
+	background-image: url('/images/testImg.png');
+	height: 180px;
+	width: 200px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	float: right;
+	margin-right: 40px;
+	margin-bottom: 40px;
+}
 .countryFlag {
 	display: block;
 	margin-right: auto;
