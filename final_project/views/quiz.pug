@@ -4,21 +4,23 @@ block title
 
 block body
 	h1 Good luck on our quiz! No Cheating!
-	span.right Number Correct --Fill in later--
 	b How many can you get correct?
-	#questions
-		form#guesses
+	#questionList
+		form.questions
 			- let questionNum = 1;
 			for question in info
-				img(class = 'countryFlag', src=question.flag, alt="Flag", srcset="")
-				//- TODO: Figure out a way for these to be trackable
-				for country in question.possAnsw
-					input(type="radio", name=`question${questionNum}`, value=country)
-					| #{country}
-					.clear
-				-questionNum++;
-	br
-	button.button(type="submit") Submit
+				.question
+					b #{questionNum}
+					img(class = "countryFlag", src=question.flag, alt="Flag", srcset="")
+					.options
+						for country in question.possAnsw
+							input(class="option", type="radio", name=`option${questionNum}`, value=country)
+							| #{country}
+							.clear
+						-questionNum++;
+			br
+			button.button(type="submit") Submit
 	b Want to share your (hopefully) awesome score with your friends on Twitter?
-	div.quizImage 
+	div#numCorrect
+	div.quizImage
 	script(src="/js/reqResults.js")

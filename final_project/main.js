@@ -59,7 +59,6 @@ app.get('/quiz', function(req, res) {
 	function(err, response, body) {
 		quiz.getCountries(body);
 
-		// TODO: find a better way to do this to be able to access the informaiton in pug
 		// TODO: add error checks, possibly combine error statements into a callable function
 		const questions = {info: quiz.create()};
 
@@ -72,10 +71,11 @@ app.get('/quiz', function(req, res) {
 });
 
 app.post('/quiz', function(req, res) {
+	const guesses = req.query.guesses.split(',');
 	let numCorrect = 0;
-	console.log(req.body);
+
 	for(let i = 0; i < questionKey.length; i++) {
-		if(req.body[i] === questionKey[i]) {
+		if(guesses[i] === questionKey[i]) {
 			++numCorrect;
 		}
 	}
@@ -83,7 +83,7 @@ app.post('/quiz', function(req, res) {
 });
 
 twitter.post('statuses/update', {status: 'hello world!'}, function(err, data, response) {
-	console.log(data);
+	//console.log(data);
 });
 const server = app.listen(3000, function() {
 	console.log(`Server is running on port ${server.address().port}`);
