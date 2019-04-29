@@ -63,3 +63,4 @@ const displayResults = function(numberCorrect) {
 	analysisElm.appendChild(text);
 	alert(scoreResponse);
 };
+module.exports = twitQuizResults

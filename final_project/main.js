@@ -6,6 +6,7 @@ const request = require('request');
 const url = require('./modules/createUrl');
 const quiz = require('./modules/quiz');
 const twitter = require('./modules/twitter');
+// const quizResults = require('./js/reqResults')
 //make sure you use "npm install twit" to install twitter api
 
 
@@ -80,11 +81,11 @@ app.post('/quiz', function(req, res) {
 		}
 	}
 	res.json(numCorrect);
+	twitter.post('statuses/update', {status: 'My country flag knowledge is superb! I received a score of: '+ numCorrect}, function(err, data, response) {
+		//console.log(data);
+	});
 });
 
-twitter.post('statuses/update', {status: 'hello world!'}, function(err, data, response) {
-	//console.log(data);
-});
 const server = app.listen(3000, function() {
 	console.log(`Server is running on port ${server.address().port}`);
 });
