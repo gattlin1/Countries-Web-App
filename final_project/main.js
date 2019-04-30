@@ -6,12 +6,15 @@ const request = require('request');
 const url = require('./modules/createUrl');
 const quiz = require('./modules/quiz');
 const twitter = require('./modules/twitter');
-// const quizResults = require('./js/reqResults')
-//make sure you use "npm install twit" to install twitter api
 
 
 app.use(express.static('resources'));
-
+app.use(express.json()); // for parsing application/json
+app.use(
+	express.urlencoded({
+		extended: true
+	})
+); // for parsing application/x-www-form-urlencoded
 
 app.set('view engine', 'pug');
 app.set('views', 'views');
@@ -72,7 +75,8 @@ app.get('/quiz', function(req, res) {
 });
 
 app.post('/quiz', function(req, res) {
-	const guesses = req.query.guesses.split(',');
+	const guesses = req.body.guesses;
+	let twitterMsg = '';
 	let numCorrect = 0;
 
 	for(let i = 0; i < questionKey.length; i++) {
@@ -80,10 +84,16 @@ app.post('/quiz', function(req, res) {
 			++numCorrect;
 		}
 	}
+
+	if (numCorrect > 7) {
+		twitterMsg = `My country flag knowledge is superb. I scored ${numCorrect} out of 10`;
+	}
+	else {
+		twitterMsg = `I only got ${numCorrect} out of 10 but this is still fun!`;
+	}
+	twitter.post('statuses/update',
+		{status: twitterMsg});
 	res.json(numCorrect);
-	twitter.post('statuses/update', {status: 'My country flag knowledge is superb! I received a score of: '+ numCorrect}, function(err, data, response) {
-		//console.log(data);
-	});
 });
 
 const server = app.listen(3000, function() {

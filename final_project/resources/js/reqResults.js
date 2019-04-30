@@ -4,27 +4,28 @@ document.querySelector('#questionList').addEventListener('submit', function(evt)
 	evt.preventDefault();
 	evt.stopPropagation();
 
-	const guesses = [];
+	const guesses = {guesses: []};
 	//TODO Find a way to check all of the radio button and store the ones that are checked in an array
 	//TODO Create case if the user doesn't answer all of the questions. or maybe just pass it through and just
 	//TODO make sure they miss a question
 	document.querySelectorAll('.option').forEach(function(option) {
 		if(option.checked) {
-			guesses.push(option.value);
+			guesses.guesses.push(option.value);
 		}
 	});
 
-	if(guesses.length === 10) {
+	if(guesses.guesses.length === 10) {
 		sendGuesses(guesses);
 	}
 	else {
-		alert(`You only answered ${guesses.length} out of 10 questions. Answer them and then hit submit again`);
+		alert(`You only answered ${guesses.guesses.length} out of 10 questions. Answer them and then hit submit again`);
 	}
 });
 
 const sendGuesses = function(guesses) {
 	const xhr = new XMLHttpRequest;
-	xhr.open('POST', `/quiz?guesses=${guesses}`);
+	xhr.open('POST', '/quiz');
+	xhr.setRequestHeader('Content-Type', 'application/json');
 
 	xhr.addEventListener('load', function() {
 		if(xhr.status >= 400) {
@@ -45,7 +46,7 @@ const sendGuesses = function(guesses) {
 		console.log('request took too long');
 	});
 
-	xhr.send();
+	xhr.send(JSON.stringify(guesses));
 };
 
 const displayResults = function(numberCorrect) {
@@ -57,10 +58,9 @@ const displayResults = function(numberCorrect) {
 		scoreResponse = 'Man... You may want to go study some more. I guess you can still tweet your score if you want';
 	}
 	else {
-		scoreResponse = 'Great Job! Do you want to tweet your score?';
+		scoreResponse = 'Great Job! We will go ahead and tween your score.';
 	}
 
 	analysisElm.appendChild(text);
 	alert(scoreResponse);
 };
-module.exports = twitQuizResults
