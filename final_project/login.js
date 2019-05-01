@@ -2,17 +2,17 @@
 
 const express = require('express'),
 	app = express()
-	cookieParser = require('cookie-parser'),
+	const cookieParser = require('cookie-parser'),
 	expressSession = require('express-session'),
 	passport = require('passport'), 
-	LocalStrategy = require('passport-twitter').Strategy; 
+	TwitterStrategy = require('passport-twitter').Strategy; 
 
 app.set('view engine' , 'pug');
 app.set('views' , 'views');
 
 app.use(
 	expressSession({
-		secret = 'mySecretCode',
+		secret : 'mySecretCode',
 		resave: false,
 		saveUninitialized: false
 	})
@@ -56,8 +56,3 @@ passport.deserializeUser(function(id, done) {
 		color: 'green'
 	});
 });
-	
-	const server = app.listen(3000, function() {
-		console.log(`Server started on port ${server.address().port}`);
-	});
-	

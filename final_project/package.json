@@ -4,7 +4,9 @@
   "description": "A web application that contacts the fish watch api and post tweets",
   "main": "main.js",
   "dependencies": {
+    "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
+    "express-session": "^1.16.1",
     "passport": "^0.4.0",
     "passport-twitter": "^1.0.4",
     "pug": "^2.0.3",

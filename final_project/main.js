@@ -7,20 +7,25 @@ const url = require('./modules/createUrl');
 const quiz = require('./modules/quiz');
 const twitter = require('./modules/twitter');
 const passport = require('passport');
+const passportInfo = require('./login')
 
 app.use(express.static('resources'));
-app.use(express.json()); // for parsing application/json
+app.use(express.json()); 
 app.use(
 	express.urlencoded({
 		extended: true
 	})
-); // for parsing application/x-www-form-urlencoded
+); 
 
 app.set('view engine', 'pug');
 app.set('views', 'views');
 
 app.get('/', function(req, res){
 	res.render('login');
+});
+
+app.get('/homepage', function(req, res) {
+	res.render('homepage');
 });
 
 app.get('/funFacts', function(req, res) {
@@ -104,15 +109,11 @@ app.post('/quiz', function(req, res) {
 // 	function(req, res){
 // 		res.redirect('/')
 // 	});
-
-	app.get('/', function(req, res) {
-	res.render('login');
-});
 	
 	app.post(
 		'/login',
 		passport.authenticate('twitter', {
-			failureRedirect: '/login',
+			failureRedirect: '/',
 			successRedirect: '/homepage'
 		})
 	);
