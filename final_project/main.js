@@ -6,7 +6,7 @@ const request = require('request');
 const url = require('./modules/createUrl');
 const quiz = require('./modules/quiz');
 const twitter = require('./modules/twitter');
-
+const passport = require('passport');
 
 app.use(express.static('resources'));
 app.use(express.json()); // for parsing application/json
@@ -95,6 +95,32 @@ app.post('/quiz', function(req, res) {
 		{status: twitterMsg});
 	res.json(numCorrect);
 });
+
+app.get('/auth/twitter',
+	passport.authenticate('twitter'));
+
+app.get('/auth/twitter/callback',
+	passport.authenticate('twitter', {failureRedirect: '/login'}),
+	function(req, res){
+		res.redirect('/')
+	});
+
+	app.get('/', function(req, res) {
+	res.render('login');
+});
+	
+	app.post(
+		'/login',
+		passport.authenticate('twitter', {
+			failureRedirect: '/',
+			successRedirect: '/quiz'
+		})
+	);
+	
+	app.get('/quiz', function(req, res) {
+		res.render('quiz');
+	});
+	
 
 const server = app.listen(3000, function() {
 	console.log(`Server is running on port ${server.address().port}`);

@@ -9,7 +9,6 @@ let myTwitter = new twit({
 	strictSSL: true, 
 	})
 
-module.exports = myTwitter;
 
 
 
