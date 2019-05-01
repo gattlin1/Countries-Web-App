@@ -20,7 +20,7 @@ app.set('view engine', 'pug');
 app.set('views', 'views');
 
 app.get('/', function(req, res){
-	res.render('homepage');
+	res.render('login');
 });
 
 app.get('/funFacts', function(req, res) {
@@ -96,14 +96,14 @@ app.post('/quiz', function(req, res) {
 	res.json(numCorrect);
 });
 
-app.get('/auth/twitter',
-	passport.authenticate('twitter'));
+// app.get('/auth/twitter',
+// 	passport.authenticate('twitter'));
 
-app.get('/auth/twitter/callback',
-	passport.authenticate('twitter', {failureRedirect: '/login'}),
-	function(req, res){
-		res.redirect('/')
-	});
+// app.get('/auth/twitter/callback',
+// 	passport.authenticate('twitter', {failureRedirect: '/login'}),
+// 	function(req, res){
+// 		res.redirect('/')
+// 	});
 
 	app.get('/', function(req, res) {
 	res.render('login');
@@ -112,14 +112,11 @@ app.get('/auth/twitter/callback',
 	app.post(
 		'/login',
 		passport.authenticate('twitter', {
-			failureRedirect: '/',
-			successRedirect: '/quiz'
+			failureRedirect: '/login',
+			successRedirect: '/homepage'
 		})
 	);
 	
-	app.get('/quiz', function(req, res) {
-		res.render('quiz');
-	});
 	
 
 const server = app.listen(3000, function() {
