@@ -1,4 +1,4 @@
-extends layout
+extends mainPages
 block title
 	title Country Fun Facts
 
@@ -12,7 +12,7 @@ block body
 			label Currency Name #[input#currencyName(type="text")]
 			label Currency Code #[input#currencyCode(type="text")]
 			label Country Abbreviation #[input#alpha3Code(type="text")]
-			button.button(type="submit") Submit
+			button.button(type="submit") Search
 	#results
-	
+
 	script(src="/js/facts.js")
