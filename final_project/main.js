@@ -22,9 +22,7 @@ app.use(
 
 app.use(express.static('resources'));
 app.use(express.json());
-app.use(express.urlencoded({
-	extended: true
-}));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -46,9 +44,8 @@ function(token, tokenSecret, profile, cb) {
 ));
 
 app.get('/auth/twitter', passport.authenticate('twitter'));
-app.get('/auth/twitter/callback', passport.authenticate('twitter',
+app.post('/', passport.authenticate('twitter',
 	{ failureRedirect: '/' }), function(req, res) {
-	console.log('i made it to the redirect');
 	res.redirect('/homepage');
 });
 
@@ -66,19 +63,28 @@ passport.deserializeUser(function(id, done) {
 app.set('view engine', 'pug');
 app.set('views', 'views');
 
+const ensureAuthenticated = function(req, res, next) {
+	if (req.isAuthenticated() === false) {
+		res.sendStatus(403);
+		return;
+	}
+
+	next();
+};
+
 app.get('/', function(req, res){
 	res.render('login');
 });
 
-app.get('/homepage', function(req, res) {
+app.get('/homepage', ensureAuthenticated, function(req, res) {
 	res.render('homepage');
 });
 
-app.get('/funFacts', function(req, res) {
+app.get('/funFacts', ensureAuthenticated, function(req, res) {
 	res.render('funFacts');
 });
 
-app.post('/funFacts', function(req, res) {
+app.post('/funFacts', ensureAuthenticated, function(req, res) {
 	const params = new Map();
 	params.set('pRegion', req.query.region || '');
 	params.set('pSubRegion', req.query.subregion || '');
@@ -106,7 +112,7 @@ app.post('/funFacts', function(req, res) {
 });
 
 const questionKey = [];
-app.get('/quiz', function(req, res) {
+app.get('/quiz', ensureAuthenticated, function(req, res) {
 	request({
 		url: 'http://countryapi.gear.host/v1/Country/getCountries',
 		json: true
@@ -125,7 +131,7 @@ app.get('/quiz', function(req, res) {
 
 });
 
-app.post('/quiz', function(req, res) {
+app.post('/quiz', ensureAuthenticated, function(req, res) {
 	const guesses = req.body.guesses;
 	let twitterMsg = '';
 	let numCorrect = 0;
