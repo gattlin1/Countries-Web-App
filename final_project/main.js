@@ -2,16 +2,15 @@
 
 const express = require('express');
 const request = require('request');
-const url = require('./modules/createUrl');
-const quiz = require('./modules/quiz');
-const twitter = require('./modules/twitter');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const TwitterStrategy = require('passport-twitter').Strategy;
+const url = require('./modules/createUrl');
+const quiz = require('./modules/quiz');
+const twitter = require('./modules/twitter');
 
 const app = express();
-
 
 app.use(session({
 	secret: 'keyboard cat',
@@ -54,7 +53,6 @@ const ensureAuthenticated = function(req, res, next) {
 		res.redirect('/login');
 		return;
 	}
-
 	next();
 };
 
@@ -138,12 +136,14 @@ app.post('/quiz', ensureAuthenticated, function(req, res) {
 			++numCorrect;
 		}
 	}
+
 	if (numCorrect >= 7) {
 		twitterMsg = `@${username}'s country flag knowledge is superb. He scored ${numCorrect} out of 10`;
 	}
 	else {
 		twitterMsg = `@${username} only got ${numCorrect} out of 10 but this is still fun!`;
 	}
+	
 	twitter.post('statuses/update', {status: twitterMsg});
 	res.json(numCorrect);
 });
