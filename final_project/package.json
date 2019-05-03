@@ -1,7 +1,7 @@
 {
-  "name": "fish-project",
+  "name": "final_project",
   "version": "1.0.0",
-  "description": "A web application that contacts the fish watch api and post tweets",
+  "description": "A web application that uses the Country API",
   "main": "main.js",
   "dependencies": {
     "cookie-parser": "^1.4.4",
@@ -11,22 +11,20 @@
     "passport-twitter": "^1.0.4",
     "pug": "^2.0.3",
     "request": "^2.88.0",
-    "twit": "^2.2.11",
     "twitter": "^1.7.1"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node main.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gattlin1/Fish-Project.git"
+    "url": "git+https://github.com/gattlin1/Countries-Web-App.git"
   },
   "author": "Gattlin Walker, Mitchell Perez",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gattlin1/Fish-Project/issues"
+    "url": "https://github.com/gattlin1/Countries-Web-App/issues"
   },
-  "homepage": "https://github.com/gattlin1/Fish-Project#readme"
+  "homepage": "https://github.com/gattlin1/Countries-Web-App#readme"
 }

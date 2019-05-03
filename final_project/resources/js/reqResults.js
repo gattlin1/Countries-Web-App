@@ -58,7 +58,7 @@ const displayResults = function(numberCorrect) {
 		scoreResponse = 'Man... You may want to go study some more. I guess you can still tweet your score if you want';
 	}
 	else {
-		scoreResponse = 'Great Job! We will go ahead and tween your score.';
+		scoreResponse = 'Great Job! We will go ahead and tweet your score.';
 	}
 
 	analysisElm.appendChild(text);

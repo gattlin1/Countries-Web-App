@@ -36,7 +36,9 @@ function(token, tokenSecret, profile, cb) {
 	return cb(null, profile);
 }));
 
+let username= '';
 passport.serializeUser(function(user, cb) {
+	username = user.username;
 	cb(null, user);
 });
 
@@ -124,7 +126,6 @@ app.get('/quiz', ensureAuthenticated, function(req, res) {
 		});
 		res.render('quiz', questions);
 	});
-
 });
 
 app.post('/quiz', ensureAuthenticated, function(req, res) {
@@ -137,15 +138,13 @@ app.post('/quiz', ensureAuthenticated, function(req, res) {
 			++numCorrect;
 		}
 	}
-
 	if (numCorrect >= 7) {
-		twitterMsg = `My country flag knowledge is superb. I scored ${numCorrect} out of 10`;
+		twitterMsg = `@${username}'s country flag knowledge is superb. He scored ${numCorrect} out of 10`;
 	}
 	else {
-		twitterMsg = `I only got ${numCorrect} out of 10 but this is still fun!`;
+		twitterMsg = `@${username} only got ${numCorrect} out of 10 but this is still fun!`;
 	}
-	twitter.post('statuses/update',
-		{status: twitterMsg});
+	twitter.post('statuses/update', {status: twitterMsg});
 	res.json(numCorrect);
 });
 
