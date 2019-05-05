@@ -127,8 +127,9 @@ app.get('/quiz', ensureAuthenticated, function(req, res) {
 });
 
 app.post('/quiz', ensureAuthenticated, function(req, res) {
+	const date = new Date();
 	const guesses = req.body.guesses;
-	let twitterMsg = '';
+	let twitterMsg = `@${username} played the country flag quiz on ${date.toDateString()}.`;
 	let numCorrect = 0;
 
 	for(let i = 0; i < questionKey.length; i++) {
@@ -138,13 +139,19 @@ app.post('/quiz', ensureAuthenticated, function(req, res) {
 	}
 
 	if (numCorrect >= 7) {
-		twitterMsg = `@${username}'s country flag knowledge is superb. He scored ${numCorrect} out of 10`;
+		twitterMsg += `He did awesome and scored ${numCorrect} out of 10`;
 	}
 	else {
-		twitterMsg = `@${username} only got ${numCorrect} out of 10 but this is still fun!`;
+		twitterMsg += `He only got ${numCorrect} out of 10 but he thinks this is still fun!`;
 	}
-	
-	twitter.post('statuses/update', {status: twitterMsg});
+
+	twitter.post('statuses/update', {status: twitterMsg},  function(error, tweet, response) {
+		if(error){
+			res.status(500).send('Sorry, for some reason your tweet did not send. Please try again.');
+		}
+		console.log(tweet);
+		console.log(response);
+	});
 	res.json(numCorrect);
 });
 
