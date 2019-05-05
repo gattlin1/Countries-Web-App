@@ -1,7 +1,7 @@
 {
   "name": "final_project",
   "version": "1.0.0",
-  "description": "A web application that uses the Country API",
+  "description": "A web application that utilizes a country api and performs tweets",
   "main": "main.js",
   "dependencies": {
     "cookie-parser": "^1.4.4",
@@ -15,7 +15,6 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node main.js"
   },
   "repository": {
