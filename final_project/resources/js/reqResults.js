@@ -5,9 +5,6 @@ document.querySelector('#questionList').addEventListener('submit', function(evt)
 	evt.stopPropagation();
 
 	const guesses = {guesses: []};
-	//TODO Find a way to check all of the radio button and store the ones that are checked in an array
-	//TODO Create case if the user doesn't answer all of the questions. or maybe just pass it through and just
-	//TODO make sure they miss a question
 	document.querySelectorAll('.option').forEach(function(option) {
 		if(option.checked) {
 			guesses.guesses.push(option.value);
@@ -29,7 +26,7 @@ const sendGuesses = function(guesses) {
 
 	xhr.addEventListener('load', function() {
 		if(xhr.status >= 400) {
-			// TODO : figure out how we want to handle this issue
+			alert('An error occured with your quiz. Please try again.');
 			return;
 		}
 

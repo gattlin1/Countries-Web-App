@@ -9,7 +9,7 @@ document.querySelector('#search').addEventListener('submit', function(evt) {
 	const currencyName = document.querySelector('#currencyName').value;
 	const currencyCode = document.querySelector('#currencyCode').value;
 	const alpha3Code = document.querySelector('#alpha3Code').value;
-	const query = `/funFacts?region=${region}&subregion=${subregion}
+	const query = `/facts?region=${region}&subregion=${subregion}
 		&currencyName=${currencyName}&currencyCode=${currencyCode}
 		&alpha3Code=${alpha3Code}`;
 
@@ -23,7 +23,7 @@ const sendSearch = function(query) {
 
 	xhr.addEventListener('load', function() {
 		if(xhr.status >= 400) {
-			alert('You entered in some incorrect information. Please make sure you are putting in information that actually returns something');
+			alert('You entered in some incorrect information. Please make sure you are entering in information that actually returns something');
 			return;
 		}
 		const countries = JSON.parse(xhr.response);

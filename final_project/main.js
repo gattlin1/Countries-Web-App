@@ -73,11 +73,11 @@ app.get('/login', function(req, res){
 	res.render('login');
 });
 
-app.get('/funFacts', ensureAuthenticated, function(req, res) {
-	res.render('funFacts');
+app.get('/facts', ensureAuthenticated, function(req, res) {
+	res.render('facts');
 });
 
-app.post('/funFacts', ensureAuthenticated, function(req, res) {
+app.post('/facts', ensureAuthenticated, function(req, res) {
 	const params = new Map();
 	params.set('pRegion', req.query.region || '');
 	params.set('pSubRegion', req.query.subregion || '');
@@ -96,8 +96,9 @@ app.post('/funFacts', ensureAuthenticated, function(req, res) {
 		}
 		const info = body;
 
+		// if search request returned no results
 		if (info.TotalCount === 0) {
-			res.status(404).send('Sorry, you tried to access information that does not exist. Please try again');
+			res.sendStatus(404);
 			return;
 		}
 		res.json(info);
@@ -129,7 +130,7 @@ app.get('/quiz', ensureAuthenticated, function(req, res) {
 app.post('/quiz', ensureAuthenticated, function(req, res) {
 	const date = new Date();
 	const guesses = req.body.guesses;
-	let twitterMsg = `@${username} played the country flag quiz on ${date.toDateString()}.`;
+	let twitterMsg = `@${username} played the country flag quiz on ${date.toDateString()} at ${date.toTimeString()}. `;
 	let numCorrect = 0;
 
 	for(let i = 0; i < questionKey.length; i++) {
@@ -147,10 +148,10 @@ app.post('/quiz', ensureAuthenticated, function(req, res) {
 
 	twitter.post('statuses/update', {status: twitterMsg},  function(error, tweet, response) {
 		if(error){
-			res.status(500).send('Sorry, for some reason your tweet did not send. Please try again.');
+			res.sendStatus(500).send('Sorry, for some reason your tweet did not send. Please try again.');
+			console.log(tweet);
+			console.log(response);
 		}
-		console.log(tweet);
-		console.log(response);
 	});
 	res.json(numCorrect);
 });
